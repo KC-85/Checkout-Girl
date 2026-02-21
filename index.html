@@ -7,6 +7,7 @@
   <meta name="description" content="Checkout Girl — singer & songwriter from Oxfordshire. Original music, collaborations, and upcoming shows.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,6 +16,21 @@
 <body>
       <!-- Skip to main content (keyboard users) -->
   <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Animated musical notes background (left and right sides only) -->
+  <div class="note-bg" aria-hidden="true">
+    <!-- Left column -->
+    <span class="note note-red note-left" style="left:4%; top:86%; --size:34px; --delay:0s">♪</span>
+    <span class="note note-black note-left" style="left:12%; top:92%; --size:28px; --delay:1.2s">♪</span>
+    <span class="note note-red note-left" style="left:20%; top:80%; --size:42px; --delay:0.6s">♪</span>
+    <span class="note note-black note-left" style="left:28%; top:90%; --size:24px; --delay:2s">♪</span>
+
+    <!-- Right column -->
+    <span class="note note-red note-right" style="right:4%; top:85%; --size:38px; --delay:0.9s">♪</span>
+    <span class="note note-black note-right" style="right:12%; top:80%; --size:30px; --delay:1.5s">♪</span>
+    <span class="note note-red note-right" style="right:20%; top:92%; --size:26px; --delay:2.6s">♪</span>
+    <span class="note note-black note-right" style="right:28%; top:76%; --size:36px; --delay:0.3s">♪</span>
+  </div>
 
   <!-- Navigation -->
   <nav class="navbar navbar-dark bg-dark sticky-top" aria-label="Primary">
@@ -52,44 +68,102 @@
       <p>Checkout Girl is a grassroots singer & songwriter from Oxfordshire who thrives when her mind is focused on music in all of its forms.</p>
       <p>She has collaborated with UK-based producer ProjectP and released tracks on the Mustache Crew record label.</p>
     </section>
+    <!-- Past Open Mic Nights -->
+    <section id="past-open-mic" class="container py-5" aria-labelledby="past-openmic-heading">
+      <h2 id="past-openmic-heading" class="text-center fw-bold mb-4">Past Open Mic Nights</h2>
+      <div class="row g-4 past-events row-cols-1 row-cols-md-2 row-cols-lg-2">
+        <article class="col">
+          <div class="event-card p-3 h-100 shadow-sm">
+            <img src="https://picsum.photos/seed/past1/600/400" alt="Open mic March 2025" class="img-fluid rounded mb-3">
+            <h3 class="mb-1">March Open Mic — 2025</h3>
+            <p class="small text-muted mb-2">The Barn, Oxfordshire — packed night of originals and covers.</p>
+            <p class="mb-2">Highlights: acoustic set of new material and a duet with a guest guitarist.</p>
+            <a class="btn btn-outline-secondary" href="#">Listen to highlights</a>
+          </div>
+        </article>
+
+        <article class="col">
+          <div class="event-card p-3 h-100 shadow-sm">
+            <img src="https://picsum.photos/seed/past2/600/400" alt="Open mic Sept 2024" class="img-fluid rounded mb-3">
+            <h3 class="mb-1">September Open Mic — 2024</h3>
+            <p class="small text-muted mb-2">The Green Room — intimate late-night session.</p>
+            <p class="mb-2">Highlights: debut of "Paper Boats" and audience singalong.</p>
+            <a class="btn btn-outline-secondary" href="#">View photos</a>
+          </div>
+        </article>
+
+        <article class="col">
+          <div class="event-card p-3 h-100 shadow-sm">
+            <img src="https://picsum.photos/seed/past3/600/400" alt="Open mic May 2024" class="img-fluid rounded mb-3">
+            <h3 class="mb-1">May Open Mic — 2024</h3>
+            <p class="small text-muted mb-2">Cafe Luna — debut set and supportive crowd.</p>
+            <p class="mb-2">Highlights: early demo recordings and feedback from fans.</p>
+            <a class="btn btn-outline-secondary" href="#">See setlist</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Open Mic section removed (past events retained) -->
 
     <!-- Features Section -->
     <section class="container py-5" aria-labelledby="services-heading">
-      <h2 id="services-heading" class="text-center fw-bold">Music</h2>
-      <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-        <article class="col d-flex align-items-start">
-          <div class="icon-square text-primary bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16" focusable="false" aria-hidden="true">
-              <path d="M14 1H2c-.55 0-1 .45-1 1v11.5L3.5 10H14c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm-1 9H3.5L2 11.5V2h12v8z"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="fs-2">Singing</h3>
-            <p>Dynamic live performances and vocal sessions — available for shows and recordings.</p>
-          </div>
-        </article>
-
-        <article class="col d-flex align-items-start">
-          <div class="icon-square text-primary bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16" focusable="false" aria-hidden="true">
-              <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1zm1 1v12h10V2H3zm5 10a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm0-1a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="fs-2">Songwriting</h3>
-            <p>Original songs, co-writes, and lyrical storytelling — available for commissions and collaborations.</p>
+      <h2 id="services-heading" class="text-center fw-bold mb-4">Music</h2>
+      <div class="row g-4 py-3 music-grid row-cols-1 row-cols-md-2 row-cols-lg-2">
+        <article class="col">
+          <div class="music-card p-3 shadow-sm h-100">
+            <div class="cover mb-3">
+              <img src="https://picsum.photos/seed/track1/600/400" alt="Single artwork: Echoes" class="img-fluid rounded">
+            </div>
+            <h3 class="mb-1">Echoes</h3>
+            <p class="text-muted small mb-2">Single — 2024 · with ProjectP</p>
+            <p class="mb-2">A dreamy indie-pop single with layered harmonies and intimate storytelling.</p>
+            <audio controls preload="none" class="w-100">
+              <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+            <div class="mt-3 d-flex gap-2">
+              <a class="btn btn-retro" href="#">Listen</a>
+              <a class="btn btn-outline-secondary" href="#">More</a>
+            </div>
           </div>
         </article>
 
-        <article class="col d-flex align-items-start">
-          <div class="icon-square text-primary bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16" focusable="false" aria-hidden="true">
-              <path d="M2 6a6 6 0 1 1 12 0c0 1.104-.895 2-2 2H4a2 2 0 0 1-2-2z"/>
-            </svg>
+        <article class="col">
+          <div class="music-card p-3 shadow-sm h-100">
+            <div class="cover mb-3">
+              <img src="https://picsum.photos/seed/track2/600/400" alt="Single artwork: Midnight Lines" class="img-fluid rounded">
+            </div>
+            <h3 class="mb-1">Midnight Lines</h3>
+            <p class="text-muted small mb-2">EP — 2023</p>
+            <p class="mb-2">A moody singer-songwriter track exploring late-night reflections and city lights.</p>
+            <audio controls preload="none" class="w-100">
+              <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+            <div class="mt-3 d-flex gap-2">
+              <a class="btn btn-retro" href="#">Listen</a>
+              <a class="btn btn-outline-secondary" href="#">More</a>
+            </div>
           </div>
-          <div>
-            <h3 class="fs-2">Collaborations & Production</h3>
-            <p>Studio collaborations, production partnerships, and release support with independent labels.</p>
+        </article>
+
+        <article class="col">
+          <div class="music-card p-3 shadow-sm h-100">
+            <div class="cover mb-3">
+              <img src="https://picsum.photos/seed/track3/600/400" alt="Single artwork: Paper Boats" class="img-fluid rounded">
+            </div>
+            <h3 class="mb-1">Paper Boats</h3>
+            <p class="text-muted small mb-2">Single — 2022</p>
+            <p class="mb-2">An acoustic-driven ballad with warm guitar and honest lyrics.</p>
+            <audio controls preload="none" class="w-100">
+              <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+            <div class="mt-3 d-flex gap-2">
+              <a class="btn btn-retro" href="#">Listen</a>
+              <a class="btn btn-outline-secondary" href="#">More</a>
+            </div>
           </div>
         </article>
       </div>

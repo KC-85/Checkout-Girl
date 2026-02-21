@@ -1,0 +1,277 @@
+/* Retro 70s/80s/90s funky styles for Checkout Girl */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik:wght@400;700&display=swap');
+
+:root{
+  --bg-1:#ff4da6; /* hot pink */
+  --bg-2:#00ffd5; /* aqua */
+  --accent:#ffd166; /* warm yellow */
+  --deep:#0b1020; /* dark navy */
+  --muted:#f7f7fb;
+}
+
+/* Base tweaks */
+body{
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255,255,255,0.02), transparent 10%),
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 8px, transparent 8px 16px),
+    linear-gradient(180deg, #fff 0%, #fff 6%, #fde8ff 30%, #fff 100%);
+  color:var(--deep);
+  font-family:Rubik, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+}
+
+a{color:var(--deep);text-decoration:none}
+
+/* Skip link visible on focus */
+.skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;padding:.5rem 1rem;background:var(--deep);color:#fff;border-radius:6px;z-index:9999}
+
+/* Hero - retro gradients and textures (no keyframes) */
+.gradient-background{
+  /* Use the same background as the page body for a seamless look */
+  background: inherit;
+  color:var(--deep);
+  position:relative;
+  overflow:visible;
+  border-bottom:8px solid rgba(11,16,32,0.04);
+}
+.gradient-background::before,
+.gradient-background::after{display:none}
+
+header .container{position:relative;z-index:2}
+header h1{font-family:Pacifico, cursive;font-size:2.6rem;letter-spacing:1px;text-transform:none;margin-bottom:.6rem;color:var(--deep);text-shadow:0 3px 8px rgba(255,255,255,0.7)}
+header img{width:100%;max-height:420px;object-fit:cover;border-radius:14px;border:6px solid rgba(11,16,32,0.06);filter:contrast(1.02) saturate(1.05)}
+
+/* Cards / features - retro panels */
+.icon-square{border-radius:10px;padding:.7rem;width:56px;height:56px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.02))}
+.article h3{color:var(--deep)}
+h3.fs-2{background:linear-gradient(90deg,var(--accent),#ffd37a);padding:.25rem .6rem;border-radius:8px;color:#111;display:inline-block;font-weight:700}
+
+/* Funky accents: neon glows, stripes, halftone */
+.container p{line-height:1.6}
+.icon-square svg{filter:drop-shadow(0 8px 18px rgba(255,77,166,0.12))}
+
+/* Navbar tweaks */
+.navbar{background:transparent}
+.navbar .navbar-toggler{border-color:rgba(255,255,255,0.12)}
+.navbar .navbar-nav a{padding:.5rem .9rem;border-radius:8px;color:var(--muted)}
+.navbar .navbar-nav a:hover{background:rgba(255,255,255,0.04)}
+
+/* Focus styles */
+:focus{outline:none}
+:focus-visible{outline:3px solid rgba(255,77,166,0.14);outline-offset:3px;border-radius:6px}
+
+/* Footer */
+footer.gradient-background{background:linear-gradient(120deg, rgba(11,16,32,0.95), rgba(7,12,27,0.95));color:#fff;padding-top:2.25rem}
+
+/* Retro badges and buttons */
+.btn-retro{background:linear-gradient(90deg,var(--bg-1),var(--bg-2));color:#071029;border-radius:999px;padding:.45rem .9rem;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+.btn-retro:active{transform:translateY(1px)}
+
+/* Responsive */
+@media (max-width:768px){
+  header img{max-height:260px}
+  header h1{font-size:1.8rem}
+}
+
+/* Note: intentionally no keyframes or animation rules — static retro vibe */
+/* Music cards styling */
+.music-card{background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,246,255,0.85));border-radius:12px;border:1px solid rgba(11,16,32,0.04)}
+.music-card .cover img{height:180px;object-fit:cover;border-radius:8px}
+.music-card h3{font-weight:700;margin-top:.25rem}
+.music-card audio{background:transparent;margin-top:.25rem}
+.music-grid .col{display:flex}
+.music-grid .music-card{flex:1;display:flex;flex-direction:column}
+.music-card p{flex:0 0 auto}
+.music-card .mt-3{margin-top:auto}
+
+/* make audio controls slightly larger and retro-colored */
+audio{outline:none}
+audio::-webkit-media-controls-panel{background:linear-gradient(90deg,var(--bg-1),var(--bg-2))}
+
+/* ensure the music grid sits above decorative notes */
+.music-grid{position:relative;z-index:3}
+
+/* Open Mic section styling */
+.open-mic{background:linear-gradient(180deg, rgba(255,250,240,0.95), rgba(255,245,250,0.9));border:1px dashed rgba(11,16,32,0.06);border-radius:12px}
+.open-mic .lead{font-weight:600;color:var(--deep)}
+.open-mic ul li{padding:.25rem 0;border-bottom:1px dotted rgba(11,16,32,0.03)}
+.open-mic img{max-height:220px;object-fit:cover;border-radius:8px;border:4px solid rgba(11,16,32,0.03)}
+.open-mic .btn-retro{box-shadow:0 8px 22px rgba(255,77,166,0.08)}
+
+@media (max-width:576px){
+  .open-mic img{max-height:160px}
+}
+
+/* Past events styling */
+.past-events .event-card{background:linear-gradient(180deg, #fff, #fff);border-radius:12px;border:1px solid rgba(11,16,32,0.04)}
+.past-events img{height:160px;object-fit:cover;border-radius:8px;border:4px solid rgba(11,16,32,0.03)}
+.past-events h3{font-size:1.05rem;margin-top:.35rem}
+.past-events p{color:#334155}
+.past-events a{margin-top:.5rem}
+
+@media (max-width:768px){
+  .past-events img{height:140px}
+}
+
+/* Force two-column layout for music and past events on wider screens */
+@media (min-width:700px){
+  .music-grid, .past-events{display:flex;flex-wrap:wrap;margin-left:-0.625rem;margin-right:-0.625rem}
+  .music-grid > .col, .past-events > .col{flex:0 0 calc(50% - 1.25rem);max-width:calc(50% - 1.25rem);padding-left:0.625rem;padding-right:0.625rem}
+}
+
+/* --- Bootstrap overrides: more natural, less 'bootstrapy' --- */
+/* Soften containers and spacing */
+.container{max-width:1100px;padding-left:2rem;padding-right:2rem}
+.row{gap:1.25rem}
+
+/* Navbar: unobtrusive, organic */
+.navbar{background:transparent!important;padding-top:1rem;padding-bottom:1rem;border-bottom:0;box-shadow:none}
+.navbar-brand{font-family:Pacifico, cursive;color:var(--deep);font-weight:700;font-size:1.25rem}
+.navbar-nav .nav-link{color:rgba(11,16,32,0.85);padding:.5rem .75rem;border-radius:999px;transition:background .18s,transform .18s}
+.navbar-nav .nav-link:hover{background:rgba(11,16,32,0.04);transform:translateY(-2px)}
+
+/* Buttons: pill shapes, softer shadows, natural tones */
+.btn{border-radius:999px;padding:.5rem .85rem;font-weight:700;box-shadow:0 8px 20px rgba(11,16,32,0.06);transition:transform .12s ease,box-shadow .12s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(11,16,32,0.08)}
+.btn-outline-secondary{background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(250,250,250,0.85));border:1px solid rgba(11,16,32,0.06);color:var(--deep)}
+.btn-retro{border:none}
+
+/* Cards: gentle curves, subtle paper texture, muted borders */
+.music-card, .event-card, .open-mic{border-radius:14px;border:1px solid rgba(11,16,32,0.03);box-shadow:0 10px 24px rgba(11,16,32,0.04);background:linear-gradient(180deg,#fff,#fff)}
+.music-card .cover img, .event-card img, .open-mic img{border-radius:10px;box-shadow:0 8px 20px rgba(11,16,32,0.04)}
+
+/* Typography: more natural rhythm */
+h1,h2,h3{line-height:1.15}
+p{color:#334155}
+
+/* Reduce Bootstrap default list/button sharpness */
+.list-unstyled li{padding:.35rem 0}
+
+/* Forms and audio: friendly spacing */
+input, textarea, select{border-radius:10px;border:1px solid rgba(11,16,32,0.06);padding:.5rem .75rem}
+audio{border-radius:8px;overflow:hidden}
+
+/* Make images feel organic on the page */
+.img-fluid{border-radius:10px}
+
+/* Reduce obvious Bootstrap shadows and lines globally */
+.shadow-sm{box-shadow:0 10px 18px rgba(11,16,32,0.04)!important}
+
+/* Keep layout breathing on small screens */
+@media (max-width:576px){
+  .container{padding-left:1rem;padding-right:1rem}
+  .navbar-brand{font-size:1.1rem}
+}
+
+/* mark done */
+
+/* ------------------------
+   Full responsive breakpoints
+   - mobile-small: up to 320px
+   - mobile-medium: 321–375px
+   - mobile-large: 376–425px
+   - tablet: 426–768px
+   - laptop: 769–1024px
+   - desktop: 1025–1440px
+   - xl: 1441px and up
+   Adjusts type, paddings, image sizes and note scaling.
+   ------------------------ */
+
+/* Mobile small */
+@media (max-width:320px){
+  :root{--container-pad:0.75rem}
+  body{font-size:14px}
+  .container{padding-left:var(--container-pad);padding-right:var(--container-pad)}
+  header h1{font-size:1.6rem}
+  .music-card .cover img, .past-events img{height:110px}
+  .note-bg .note{font-size:calc(var(--size,28px) * 0.7)}
+}
+
+/* Mobile medium */
+@media (min-width:321px) and (max-width:375px){
+  :root{--container-pad:0.9rem}
+  body{font-size:15px}
+  header h1{font-size:1.75rem}
+  .music-card .cover img, .past-events img{height:130px}
+  .note-bg .note{font-size:calc(var(--size,28px) * 0.8)}
+}
+
+/* Mobile large */
+@media (min-width:376px) and (max-width:425px){
+  :root{--container-pad:1rem}
+  body{font-size:15.5px}
+  header h1{font-size:1.95rem}
+  .music-card .cover img, .past-events img{height:150px}
+}
+
+/* Tablet */
+@media (min-width:426px) and (max-width:768px){
+  :root{--container-pad:1.25rem}
+  body{font-size:16px}
+  header h1{font-size:2.2rem}
+  .container{padding-left:var(--container-pad);padding-right:var(--container-pad)}
+  .music-card .cover img, .past-events img{height:170px}
+  /* enable two-column layout starting on tablet */
+  .music-grid > .col, .past-events > .col{flex:0 0 calc(50% - 1.25rem);max-width:calc(50% - 1.25rem)}
+}
+
+/* Laptop */
+@media (min-width:769px) and (max-width:1024px){
+  :root{--container-pad:1.5rem}
+  body{font-size:17px}
+  header h1{font-size:2.6rem}
+  .music-card .cover img, .past-events img{height:190px}
+  .note-bg .note{font-size:calc(var(--size,28px) * 1.02)}
+}
+
+/* Desktop */
+@media (min-width:1025px) and (max-width:1440px){
+  :root{--container-pad:2rem}
+  body{font-size:18px}
+  header h1{font-size:3rem}
+  .music-card .cover img, .past-events img{height:220px}
+}
+
+/* XL */
+@media (min-width:1441px){
+  :root{--container-pad:2.5rem}
+  body{font-size:19px}
+  header h1{font-size:3.4rem}
+  .music-card .cover img, .past-events img{height:260px}
+  .container{max-width:1300px}
+}
+/* Animated musical notes (black & red) */
+.note-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.note-bg .note{position:absolute;font-size:var(--size,28px);line-height:1;color:#111;opacity:0.95;transform-origin:center center;display:inline-block;will-change:transform,opacity}
+.note-bg .note.note-red{color:#c5222d}
+.note-bg .note.note-black{color:#0b0b0b}
+
+/* gentle rising animation for notes */
+@keyframes note-rise{
+  0%{transform:translateY(0) rotate(0) scale(1);opacity:0}
+  6%{opacity:1}
+  60%{opacity:1}
+  100%{transform:translateY(-120vh) rotate(360deg) scale(0.9);opacity:0}
+}
+.note-bg .note{animation:note-rise 9s linear infinite; animation-delay: var(--delay, 0s)}
+
+/* Slight horizontal sway per note using nth-child offsets via transform */
+.note-bg .note:nth-child(odd){filter:drop-shadow(0 8px 10px rgba(0,0,0,0.08))}
+.note-bg .note:nth-child(even){filter:drop-shadow(0 6px 6px rgba(0,0,0,0.06))}
+
+/* ensure main content sits above the notes */
+main, header, nav, footer{position:relative;z-index:2}
+
+/* Position notes close to the very left and right edges */
+.note-left{left:1.2rem !important; right:auto !important}
+.note-right{right:1.2rem !important; left:auto !important}
+
+/* Slight horizontal nudge so notes don't perfectly overlap vertically */
+.note-left:nth-of-type(1){transform:translateX(0) rotate(0)}
+.note-left:nth-of-type(2){transform:translateX(6px) rotate(-6deg)}
+.note-left:nth-of-type(3){transform:translateX(-4px) rotate(4deg)}
+.note-left:nth-of-type(4){transform:translateX(8px) rotate(-3deg)}
+.note-right:nth-of-type(1){transform:translateX(0) rotate(0)}
+.note-right:nth-of-type(2){transform:translateX(-6px) rotate(6deg)}
+.note-right:nth-of-type(3){transform:translateX(4px) rotate(-4deg)}
+.note-right:nth-of-type(4){transform:translateX(-8px) rotate(3deg)}
