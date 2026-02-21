@@ -33,32 +33,74 @@
   </div>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-dark bg-dark sticky-top" aria-label="Primary">
-  <div class="container-fluid">
+  <nav class="site-navbar sticky-top" aria-label="Primary navigation">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand me-3" href="#main">Checkout Girl</a>
 
-      <!-- Right-aligned burger -->
-      <button class="navbar-toggler ms-auto" type="button"
-        data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span 
-            class="navbar-toggler-icon">
-          </span>
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
 
-    <div class="collapse navbar-collapse mt-2" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        
-      </ul>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#main">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services-heading">Music</a></li>
+          <li class="nav-item"><a class="nav-link" href="#past-open-mic">Past Open Mics</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
   <main id="main">
-    <!-- Hero Section -->
-    <header class="gradient-background py-5 text-center">
-      <div class="container">
-        <h1 class="display-5 fw-bold">Checkout Girl</h1>
-        <img src="https://picsum.photos/1200/600?random=1" class="img-fluid mt-3 rounded shadow" alt="Checkout Girl performing on stage">
+    <!-- Hero Section (carousel) -->
+    <header class="gradient-background py-5">
+      <div class="container position-relative">
+        <h1 class="hero-title">Checkout Girl</h1>
+        <div id="heroCarousel" class="carousel slide rounded shadow" data-bs-ride="carousel" data-bs-interval="7000">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://picsum.photos/seed/hero1/1400/700" class="d-block w-100 carousel-hero-img" alt="Checkout Girl live performance 1">
+              <div class="carousel-caption text-start text-shadow-sm">
+                <h1 class="display-5 fw-bold">Checkout Girl</h1>
+                <p class="lead">Singer & songwriter from Oxfordshire — originals & collaborations</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="https://picsum.photos/seed/hero2/1400/700" class="d-block w-100 carousel-hero-img" alt="Checkout Girl live performance 2">
+              <div class="carousel-caption text-start text-shadow-sm">
+                <h1 class="display-5 fw-bold">New single out now</h1>
+                <p class="lead">Listen to the latest releases and live sessions</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="https://picsum.photos/seed/hero3/1400/700" class="d-block w-100 carousel-hero-img" alt="Checkout Girl live performance 3">
+              <div class="carousel-caption text-start text-shadow-sm">
+                <h1 class="display-5 fw-bold">Open Mic Highlights</h1>
+                <p class="lead">Community nights and local collaborations</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="https://picsum.photos/seed/hero4/1400/700" class="d-block w-100 carousel-hero-img" alt="Checkout Girl live performance 4">
+              <div class="carousel-caption text-start text-shadow-sm">
+                <h1 class="display-5 fw-bold">Catch a show soon</h1>
+                <p class="lead">Tours, pop-ups and intimate sets</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Previous slide">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Next slide">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          </div>
+        </div>
       </div>
     </header>
 
