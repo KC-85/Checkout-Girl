@@ -106,19 +106,30 @@ footer#contact a{color:#ffdede}
 footer#contact p{margin-bottom:.35rem}
 
 /* Site navbar matches footer color */
-.site-navbar{background: linear-gradient(90deg, #0b0b0b 0%, #601010 60%);color:#fff}
-.site-navbar .navbar-brand{color:#fff;font-weight:700}
-.site-navbar .nav-link{color:rgba(255,242,242,0.95);padding:.5rem .75rem;margin-left:.25rem;margin-right:.25rem;border-radius:999px}
+.site-navbar{background: linear-gradient(90deg, #0b0b0b 0%, #601010 60%);color:#fff;padding-top:1.15rem;padding-bottom:1.15rem}
+.site-navbar .navbar-brand{color:#fff;font-weight:700;font-family:'Ubuntu', sans-serif;font-size:1.35rem}
+.site-navbar .nav-link{color:rgba(255,242,242,0.95);padding:.65rem .9rem;margin-left:.35rem;margin-right:.35rem;border-radius:999px;font-family:'Ubuntu', sans-serif;font-size:1rem}
 .site-navbar .nav-link:hover{background:rgba(255,255,255,0.04);color:#fff}
-.site-navbar .navbar-toggler{border-color:rgba(255,255,255,0.12)}
+.site-navbar .navbar-toggler{border-color:rgba(255,255,255,0.12);padding:.25rem}
 .site-navbar .navbar-toggler-icon{background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");}
 
 /* Make navbar visually elevated */
 .site-navbar{box-shadow:0 6px 24px rgba(0,0,0,0.18)}
 
 @media (max-width:576px){
-  .site-navbar .navbar-brand{font-size:1.05rem}
+  .site-navbar{padding-top:.6rem;padding-bottom:.6rem}
+  .site-navbar .navbar-brand{font-size:1.15rem}
+  .site-navbar .nav-link{font-size:.95rem;padding:.5rem .6rem}
 }
+
+/* Dark mode overrides (applied when <body> has class .dark-mode) */
+body.dark-mode{background:linear-gradient(180deg,#060606,#0b0b0b);color:#e8e8e8}
+body.dark-mode .container{background:transparent}
+body.dark-mode .music-card, body.dark-mode .event-card, body.dark-mode .open-mic{background:linear-gradient(180deg,#0d0d0d,#111);border-color:rgba(255,255,255,0.03);box-shadow:0 10px 24px rgba(0,0,0,0.6)}
+body.dark-mode p, body.dark-mode .text-muted, body.dark-mode .small{color:#d0d6db}
+body.dark-mode .carousel-caption{background:linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.35))}
+body.dark-mode .note-bg .note.note-black{color:#e8e8e8}
+body.dark-mode .btn-outline-secondary{background:transparent;border-color:rgba(255,255,255,0.06);color:#fff}
 
 /* Retro badges and buttons */
 .btn-retro{background:linear-gradient(90deg,var(--bg-1),var(--bg-2));color:#071029;border-radius:999px;padding:.45rem .9rem;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
