@@ -62,6 +62,13 @@ h3.fs-2{background:linear-gradient(90deg,var(--accent),#ffd37a);padding:.25rem .
 
 /* Footer */
 footer.gradient-background{background:linear-gradient(120deg, rgba(11,16,32,0.95), rgba(7,12,27,0.95));color:#fff;padding-top:2.25rem}
+/* Footer color override for site footer */
+footer#contact.gradient-background{
+  background: linear-gradient(90deg, #0b0b0b 0%, #601010 60%);
+  color: #fff;
+}
+footer#contact a{color:#ffdede}
+footer#contact p{margin-bottom:.35rem}
 
 /* Retro badges and buttons */
 .btn-retro{background:linear-gradient(90deg,var(--bg-1),var(--bg-2));color:#071029;border-radius:999px;padding:.45rem .9rem;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
