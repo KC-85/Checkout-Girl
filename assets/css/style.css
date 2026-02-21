@@ -1,5 +1,6 @@
 /* Retro 70s/80s/90s funky styles for Checkout Girl */
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700;800&display=swap');
 
 :root{
   --bg-1:#ff4da6; /* hot pink */
@@ -16,7 +17,7 @@ body{
     repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 8px, transparent 8px 16px),
     linear-gradient(180deg, #fff 0%, #fff 6%, #fde8ff 30%, #fff 100%);
   color:var(--deep);
-  font-family:Rubik, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  font-family: 'Ubuntu', Rubik, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
 }
 
 a{color:var(--deep);text-decoration:none}
@@ -38,8 +39,42 @@ a{color:var(--deep);text-decoration:none}
 .gradient-background::after{display:none}
 
 header .container{position:relative;z-index:2}
-header h1{font-family:Pacifico, cursive;font-size:2.6rem;letter-spacing:1px;text-transform:none;margin-bottom:.6rem;color:var(--deep);text-shadow:0 3px 8px rgba(255,255,255,0.7)}
+header h1{font-family:'Ubuntu', Pacifico, cursive;font-size:2.6rem;letter-spacing:1px;text-transform:none;margin-bottom:.6rem;color:var(--deep);text-shadow:0 3px 8px rgba(255,255,255,0.7)}
 header img{width:100%;max-height:420px;object-fit:cover;border-radius:14px;border:6px solid rgba(11,16,32,0.06);filter:contrast(1.02) saturate(1.05)}
+
+/* Carousel hero adjustments */
+.carousel-hero-img{width:100%;height:420px;object-fit:cover;border-radius:12px}
+.text-shadow-sm{text-shadow:0 4px 18px rgba(0,0,0,0.45)}
+.carousel-caption{left:2rem;right:auto;bottom:2.2rem}
+
+@media (min-width:1025px){
+  .carousel-hero-img{height:580px}
+}
+
+.hero-title{font-family:'Ubuntu', Pacifico, cursive;text-align:center;font-size:3rem;margin:0 0 1rem;color:var(--deep);letter-spacing:1px}
+@media (max-width:576px){
+  .hero-title{font-size:1.9rem;margin-bottom:.6rem}
+}
+
+/* Ensure headings use Bryant2 */
+h1,h2,h3{font-family:'Ubuntu', Rubik, system-ui, -apple-system, 'Segoe UI', Roboto, Arial}
+
+/* Larger hero title on desktop */
+@media (min-width:1025px){
+  .hero-title{font-size:4.2rem}
+}
+
+/* Make caption readable: overlay and caption box */
+.carousel-item{position:relative}
+.carousel-item::before{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(180deg, rgba(11,16,32,0.45), rgba(11,16,32,0.18));pointer-events:none;z-index:1}
+.carousel-caption{position:absolute;z-index:3;color:#fff;padding:1rem 1.1rem;background:linear-gradient(90deg, rgba(11,16,32,0.55), rgba(11,16,32,0.28));backdrop-filter:blur(4px);border-radius:10px;max-width:60%}
+.carousel-caption h1,.carousel-caption p{color:#fff;text-shadow:0 6px 18px rgba(0,0,0,0.6)}
+
+@media (max-width:768px){
+  .carousel-caption{left:1rem;right:1rem;bottom:1rem;max-width:100%;padding:.8rem}
+  .carousel-caption h1{font-size:1.25rem}
+  .carousel-hero-img{height:300px}
+}
 
 /* Cards / features - retro panels */
 .icon-square{border-radius:10px;padding:.7rem;width:56px;height:56px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.02))}
@@ -70,6 +105,21 @@ footer#contact.gradient-background{
 footer#contact a{color:#ffdede}
 footer#contact p{margin-bottom:.35rem}
 
+/* Site navbar matches footer color */
+.site-navbar{background: linear-gradient(90deg, #0b0b0b 0%, #601010 60%);color:#fff}
+.site-navbar .navbar-brand{color:#fff;font-weight:700}
+.site-navbar .nav-link{color:rgba(255,242,242,0.95);padding:.5rem .75rem;margin-left:.25rem;margin-right:.25rem;border-radius:999px}
+.site-navbar .nav-link:hover{background:rgba(255,255,255,0.04);color:#fff}
+.site-navbar .navbar-toggler{border-color:rgba(255,255,255,0.12)}
+.site-navbar .navbar-toggler-icon{background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");}
+
+/* Make navbar visually elevated */
+.site-navbar{box-shadow:0 6px 24px rgba(0,0,0,0.18)}
+
+@media (max-width:576px){
+  .site-navbar .navbar-brand{font-size:1.05rem}
+}
+
 /* Retro badges and buttons */
 .btn-retro{background:linear-gradient(90deg,var(--bg-1),var(--bg-2));color:#071029;border-radius:999px;padding:.45rem .9rem;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
 .btn-retro:active{transform:translateY(1px)}
@@ -90,6 +140,34 @@ footer#contact p{margin-bottom:.35rem}
 .music-grid .music-card{flex:1;display:flex;flex-direction:column}
 .music-card p{flex:0 0 auto}
 .music-card .mt-3{margin-top:auto}
+
+/* Enlarge and lift music cards on hover (desktop/hover-capable devices) */
+@media (hover: hover) and (min-width:700px){
+  .music-card{
+    transition:transform .22s cubic-bezier(.2,.9,.3,1), box-shadow .22s;
+    will-change:transform;
+    transform-origin:center top;
+  }
+  .music-card:hover{
+    transform:translateY(-8px) scale(1.035);
+    z-index:6;
+    box-shadow:0 22px 48px rgba(11,16,32,0.14);
+  }
+}
+
+/* Enlarge and lift past event cards on hover (desktop/hover-capable devices) */
+@media (hover: hover) and (min-width:700px){
+  .event-card{
+    transition:transform .22s cubic-bezier(.2,.9,.3,1), box-shadow .22s;
+    will-change:transform;
+    transform-origin:center top;
+  }
+  .event-card:hover{
+    transform:translateY(-6px) scale(1.03);
+    z-index:5;
+    box-shadow:0 20px 40px rgba(11,16,32,0.12);
+  }
+}
 
 /* make audio controls slightly larger and retro-colored */
 audio{outline:none}
