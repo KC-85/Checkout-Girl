@@ -16,6 +16,22 @@ document.addEventListener('DOMContentLoaded', function () {
     console.warn('Carousel init failed', err);
   }
 
+  // Theme toggle (light/dark) - persists choice in localStorage
+  const themeToggle = document.getElementById('themeToggle');
+  const rootBody = document.body;
+  const stored = localStorage.getItem('cg-theme');
+  if (stored === 'dark') rootBody.classList.add('dark-mode');
+  if (stored === 'light') rootBody.classList.remove('dark-mode');
+  if (themeToggle) {
+    const updateButton = () => themeToggle.setAttribute('aria-pressed', rootBody.classList.contains('dark-mode') ? 'true' : 'false');
+    updateButton();
+    themeToggle.addEventListener('click', () => {
+      const isDark = rootBody.classList.toggle('dark-mode');
+      localStorage.setItem('cg-theme', isDark ? 'dark' : 'light');
+      updateButton();
+    });
+  }
+
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
