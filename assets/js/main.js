@@ -8,8 +8,38 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initialize hero carousel (Bootstrap) with 7s interval and pause on hover
   try {
     const heroEl = document.getElementById('heroCarousel');
+    var heroCarousel = null;
     if (heroEl && window.bootstrap && window.bootstrap.Carousel) {
-      new bootstrap.Carousel(heroEl, { interval: 7000, ride: 'carousel', pause: 'hover' });
+      heroCarousel = new bootstrap.Carousel(heroEl, { interval: 7000, ride: 'carousel', pause: 'hover' });
+    }
+
+    // Respect prefers-reduced-motion: pause carousel if user prefers reduced motion
+    try {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced && heroCarousel && typeof heroCarousel.pause === 'function') {
+        heroCarousel.pause();
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    // Accessible pause/play control for carousel (required to let users stop moving content)
+    const carouselPauseBtn = document.getElementById('carouselPause');
+    if (carouselPauseBtn && heroCarousel) {
+      carouselPauseBtn.addEventListener('click', function () {
+        const isPaused = carouselPauseBtn.getAttribute('aria-pressed') === 'true';
+        if (isPaused) {
+          if (typeof heroCarousel.cycle === 'function') heroCarousel.cycle();
+          carouselPauseBtn.setAttribute('aria-pressed', 'false');
+          carouselPauseBtn.textContent = 'Pause';
+          carouselPauseBtn.setAttribute('aria-label', 'Pause carousel');
+        } else {
+          if (typeof heroCarousel.pause === 'function') heroCarousel.pause();
+          carouselPauseBtn.setAttribute('aria-pressed', 'true');
+          carouselPauseBtn.textContent = 'Play';
+          carouselPauseBtn.setAttribute('aria-label', 'Play carousel');
+        }
+      });
     }
   } catch (err) {
     // ignore if bootstrap not available
@@ -77,37 +107,44 @@ document.addEventListener('DOMContentLoaded', function () {
       if (audio.paused) {
         // pause others
         audios.forEach(other => { if (!other.paused) other.pause(); });
-        audio.play().then(() => {
-          btn.classList.add('playing');
-          btn.textContent = 'Pause';
-        }).catch(() => {
+        audio.play().catch(() => {
           // user gesture required in some browsers
         });
       } else {
         audio.pause();
-        btn.classList.remove('playing');
-        btn.textContent = 'Listen';
       }
-
-      // keep button label in sync if user uses native controls
-      audio.addEventListener('pause', () => { btn.classList.remove('playing'); btn.textContent = 'Listen'; });
-      audio.addEventListener('ended', () => { btn.classList.remove('playing'); btn.textContent = 'Listen'; });
     });
   });
 
-  // Optional: show a small visual when audio is playing (adds class to card)
+  // Update UI and announce audio playback state to assistive tech
+  const audioStatus = document.getElementById('audioStatus');
   audios.forEach(a => {
     a.addEventListener('play', () => {
       const card = a.closest('.music-card');
-      if (card) card.classList.add('audio-playing');
+      if (card) {
+        card.classList.add('audio-playing');
+        const btn = card.querySelector('.btn-retro');
+        if (btn) { btn.classList.add('playing'); btn.textContent = 'Pause'; btn.setAttribute('aria-pressed', 'true'); }
+        if (audioStatus) audioStatus.textContent = `Playing ${card.querySelector('h3')?.textContent || 'track'}`;
+      }
     });
     a.addEventListener('pause', () => {
       const card = a.closest('.music-card');
-      if (card) card.classList.remove('audio-playing');
+      if (card) {
+        card.classList.remove('audio-playing');
+        const btn = card.querySelector('.btn-retro');
+        if (btn) { btn.classList.remove('playing'); btn.textContent = 'Listen'; btn.setAttribute('aria-pressed', 'false'); }
+        if (audioStatus) audioStatus.textContent = `Paused ${card.querySelector('h3')?.textContent || 'track'}`;
+      }
     });
     a.addEventListener('ended', () => {
       const card = a.closest('.music-card');
-      if (card) card.classList.remove('audio-playing');
+      if (card) {
+        card.classList.remove('audio-playing');
+        const btn = card.querySelector('.btn-retro');
+        if (btn) { btn.classList.remove('playing'); btn.textContent = 'Listen'; btn.setAttribute('aria-pressed', 'false'); }
+        if (audioStatus) audioStatus.textContent = `${card.querySelector('h3')?.textContent || 'Track'} ended`;
+      }
     });
   });
 
