@@ -128,15 +128,7 @@ footer#contact p{margin-bottom:.35rem}
   .site-navbar .nav-link{font-size:.95rem;padding:.5rem .6rem}
 }
 
-/* Dark mode overrides (applied when <body> has class .dark-mode) */
-body.dark-mode{background:linear-gradient(180deg,#060606,#0b0b0b);color:#e8e8e8}
-body.dark-mode .container{background:transparent}
-body.dark-mode .music-card, body.dark-mode .event-card, body.dark-mode .open-mic{background:linear-gradient(180deg,#0d0d0d,#111);border-color:rgba(255,255,255,0.03);box-shadow:0 10px 24px rgba(0,0,0,0.6)}
-body.dark-mode p, body.dark-mode .text-muted, body.dark-mode .small{color:#d0d6db}
-body.dark-mode .carousel-caption{background:linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.35))}
-body.dark-mode .note-bg .note.note-black{color:#e8e8e8}
-body.dark-mode .btn-outline-secondary{background:transparent;border-color:rgba(255,255,255,0.06);color:#fff}
-
+/* Dark mode support removed; site uses single theme */
 /* Custom scrollbar styling */
 /* WebKit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar{width:12px}
@@ -147,10 +139,7 @@ body.dark-mode .btn-outline-secondary{background:transparent;border-color:rgba(2
 /* Firefox */
 * {scrollbar-color: #c5222d #f7f7fb;scrollbar-width: thin;}
 
-/* Dark mode scrollbar */
-body.dark-mode::-webkit-scrollbar-track{background:#0b0b0b}
-body.dark-mode::-webkit-scrollbar-thumb{border-color:#0b0b0b}
-body.dark-mode {scrollbar-color: #ff4da6 #0b0b0b;}
+/* Dark mode scrollbar rules removed */
 
 /* Retro badges and buttons */
 .btn-retro{background:linear-gradient(90deg,var(--bg-1),var(--bg-2));color:#ffffff;border-radius:999px;padding:.45rem .9rem;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
