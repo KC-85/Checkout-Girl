@@ -1,137 +1,57 @@
-// Main JS for Checkout Girl
-// Features:
-// - Smooth scrolling for in-page anchors
-// - Ensure only one audio plays at a time
-// - "Listen" buttons toggle play/pause for their associated audio
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Initialize hero carousel (Bootstrap) with 7s interval and pause on hover
-  try {
-    const heroEl = document.getElementById('heroCarousel');
-    var heroCarousel = null;
-    if (heroEl && window.bootstrap && window.bootstrap.Carousel) {
-      heroCarousel = new bootstrap.Carousel(heroEl, { interval: 7000, ride: 'carousel', pause: 'hover' });
-    }
-
-    // Respect prefers-reduced-motion: pause carousel if user prefers reduced motion
-    try {
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced && heroCarousel && typeof heroCarousel.pause === 'function') {
-        heroCarousel.pause();
-      }
-    } catch (e) {
-      // ignore
-    }
-
-    // Accessible pause/play control for carousel (required to let users stop moving content)
-    const carouselPauseBtn = document.getElementById('carouselPause');
-    if (carouselPauseBtn && heroCarousel) {
-      carouselPauseBtn.addEventListener('click', function () {
-        const isPaused = carouselPauseBtn.getAttribute('aria-pressed') === 'true';
-        if (isPaused) {
-          if (typeof heroCarousel.cycle === 'function') heroCarousel.cycle();
-          carouselPauseBtn.setAttribute('aria-pressed', 'false');
-          carouselPauseBtn.textContent = 'Pause';
-          carouselPauseBtn.setAttribute('aria-label', 'Pause carousel');
-        } else {
-          if (typeof heroCarousel.pause === 'function') heroCarousel.pause();
-          carouselPauseBtn.setAttribute('aria-pressed', 'true');
-          carouselPauseBtn.textContent = 'Play';
-          carouselPauseBtn.setAttribute('aria-label', 'Play carousel');
-        }
-      });
-    }
-  } catch (err) {
-    // ignore if bootstrap not available
-    console.warn('Carousel init failed', err);
-  }
-
-  // Theme toggle removed (dark mode support disabled)
-
-  // Smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      const href = anchor.getAttribute('href');
-      if (!href || href === '#') return;
-      const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // update focus for accessibility
-        target.setAttribute('tabindex', '-1');
-        target.focus({ preventScroll: true });
-        window.setTimeout(() => target.removeAttribute('tabindex'), 1000);
-      }
-    });
-  });
-
-  // Audio controls: allow only one audio to play at a time
-  const audios = Array.from(document.querySelectorAll('audio'));
-  if (audios.length) {
-    audios.forEach(a => {
-      a.addEventListener('play', function () {
-        audios.forEach(other => {
-          if (other !== a && !other.paused) other.pause();
-        });
-      });
-    });
-  }
-
-  // Wire up .btn-retro "Listen" buttons to toggle the nearest audio element
-  document.querySelectorAll('.btn-retro').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      // Try to find nearest audio in same card
-      const card = btn.closest('.music-card');
-      let audio = null;
-      if (card) audio = card.querySelector('audio');
-      if (!audio) {
-        // fallback: first audio on page
-        audio = document.querySelector('audio');
-      }
-      if (!audio) return;
-
-      if (audio.paused) {
-        // pause others
-        audios.forEach(other => { if (!other.paused) other.pause(); });
-        audio.play().catch(() => {
-          // user gesture required in some browsers
-        });
-      } else {
-        audio.pause();
-      }
-    });
-  });
-
-  // Update UI and announce audio playback state to assistive tech
-  const audioStatus = document.getElementById('audioStatus');
-  audios.forEach(a => {
-    a.addEventListener('play', () => {
-      const card = a.closest('.music-card');
-      if (card) {
-        card.classList.add('audio-playing');
-        const btn = card.querySelector('.btn-retro');
-        if (btn) { btn.classList.add('playing'); btn.textContent = 'Pause'; btn.setAttribute('aria-pressed', 'true'); }
-        if (audioStatus) audioStatus.textContent = `Playing ${card.querySelector('h3')?.textContent || 'track'}`;
-      }
-    });
-    a.addEventListener('pause', () => {
-      const card = a.closest('.music-card');
-      if (card) {
-        card.classList.remove('audio-playing');
-        const btn = card.querySelector('.btn-retro');
-        if (btn) { btn.classList.remove('playing'); btn.textContent = 'Listen'; btn.setAttribute('aria-pressed', 'false'); }
-        if (audioStatus) audioStatus.textContent = `Paused ${card.querySelector('h3')?.textContent || 'track'}`;
-      }
-    });
-    a.addEventListener('ended', () => {
-      const card = a.closest('.music-card');
-      if (card) {
-        card.classList.remove('audio-playing');
-        const btn = card.querySelector('.btn-retro');
-        if (btn) { btn.classList.remove('playing'); btn.textContent = 'Listen'; btn.setAttribute('aria-pressed', 'false'); }
-        if (audioStatus) audioStatus.textContent = `${card.querySelector('h3')?.textContent || 'Track'} ended`;
-      }
-    });
-  });
-
+"use strict";
+// Find the interactive navigation and status-message elements once, then reuse them.
+// The generic type parameters tell TypeScript which HTML element APIs are available.
+const menuButton = document.querySelector('[data-menu-toggle]');
+const menu = document.querySelector('[data-menu]');
+const statusMessage = document.querySelector('[data-status]');
+// Return the mobile navigation to its closed and accessible state.
+// The guard makes this safe even if the navigation is removed from the HTML later.
+const closeMenu = () => {
+    if (!menuButton || !menu)
+        return;
+    menuButton.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('is-open');
+};
+// Toggle the mobile menu visually and keep aria-expanded accurate for screen readers.
+menuButton?.addEventListener('click', () => {
+    if (!menu)
+        return;
+    const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!isOpen));
+    menu.classList.toggle('is-open', !isOpen);
 });
+// Close the mobile menu after selecting a link, or when the Escape key is pressed.
+menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape')
+        closeMenu();
+});
+// Detect whether the visitor has asked their device to minimise animation.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reveals = document.querySelectorAll('.reveal');
+// Show everything immediately when reduced motion is preferred or the browser does
+// not support IntersectionObserver. Otherwise reveal each element as it enters view.
+if (reduceMotion || !('IntersectionObserver' in window)) {
+    reveals.forEach((element) => element.classList.add('is-visible'));
+}
+else {
+    const observer = new IntersectionObserver((entries, revealObserver) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting)
+                return;
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.12 });
+    reveals.forEach((element) => observer.observe(element));
+}
+// The mailing list is not connected yet, so give visitors clear, accessible feedback
+// instead of sending them to an empty or placeholder link.
+document.querySelector('[data-notify]')?.addEventListener('click', () => {
+    if (statusMessage)
+        statusMessage.textContent = 'Mailing-list link coming soon — check back for the next drop.';
+});
+// Keep the footer copyright year current without needing a yearly HTML edit.
+const year = document.querySelector('[data-year]');
+if (year)
+    year.textContent = String(new Date().getFullYear());
