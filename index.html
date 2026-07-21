@@ -1,258 +1,205 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout Girl</title>
-  <meta name="description" content="Checkout Girl — singer & songwriter from Oxfordshire. Original music, collaborations, and upcoming shows.">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="canonical" href="https://example.com/">
-  <!-- Open Graph / Social -->
-  <meta property="og:site_name" content="Checkout Girl">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11110f">
+  <meta name="description" content="Checkout Girl is an independent singer-songwriter from Oxfordshire making honest, genre-curious music.">
   <meta property="og:title" content="Checkout Girl — Singer & Songwriter">
-  <meta property="og:description" content="Checkout Girl — singer & songwriter from Oxfordshire. Originals, collaborations and past open mic highlights.">
-  <meta property="og:type" content="music.artist">
-  <meta property="og:url" content="https://example.com/">
-  <meta property="og:image" content="https://picsum.photos/seed/hero1/1400/700">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Checkout Girl — Singer & Songwriter">
-  <meta name="twitter:description" content="Checkout Girl — singer & songwriter from Oxfordshire. Originals, collaborations and past open mic highlights.">
-  <meta name="twitter:image" content="https://picsum.photos/seed/hero1/1400/700">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.min.css">
+  <meta property="og:description" content="Original music, collaborations and live moments from Checkout Girl.">
+  <meta property="og:type" content="profile">
+  <meta property="og:image" content="assets/images/checkoutgirlmain.jpg">
+  <title>Checkout Girl — Singer & Songwriter</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}</style>
-  <!-- Structured data for SEO (schema.org) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MusicGroup",
-    "name": "Checkout Girl",
-    "url": "https://example.com/",
-    "description": "Checkout Girl is a singer & songwriter from Oxfordshire releasing original music and performing live.",
-    "image": "https://picsum.photos/seed/hero1/1400/700",
-    "sameAs": [
-      "https://www.facebook.com/",
-      "https://www.instagram.com/",
-      "https://music.example.com/"
-    ]
-  }
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { ink: '#11110f', acid: '#d8ff36', cream: '#f2efe8', coral: '#ff5a48', lilac: '#b9a7ff' },
+          fontFamily: { display: ['Space Grotesk', 'sans-serif'], body: ['DM Sans', 'sans-serif'] }
+        }
+      }
+    }
   </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/main.js" defer></script>
 </head>
-<body>
-      <!-- Skip to main content (keyboard users) -->
-  <a class="skip-link" href="#main">Skip to content</a>
+<body class="bg-cream font-body text-ink antialiased">
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- Animated musical notes background (left and right sides only) -->
-  <div class="note-bg" aria-hidden="true">
-    <!-- Left column -->
-    <span class="note note-red note-left" style="left:4%; top:86%; --size:34px; --delay:0s">♪</span>
-    <span class="note note-black note-left" style="left:12%; top:92%; --size:28px; --delay:1.2s">♪</span>
-    <span class="note note-red note-left" style="left:20%; top:80%; --size:42px; --delay:0.6s">♪</span>
-    <span class="note note-black note-left" style="left:28%; top:90%; --size:24px; --delay:2s">♪</span>
-
-    <!-- Right column -->
-    <span class="note note-red note-right" style="right:4%; top:85%; --size:38px; --delay:0.9s">♪</span>
-    <span class="note note-black note-right" style="right:12%; top:80%; --size:30px; --delay:1.5s">♪</span>
-    <span class="note note-red note-right" style="right:20%; top:92%; --size:26px; --delay:2.6s">♪</span>
-    <span class="note note-black note-right" style="right:28%; top:76%; --size:36px; --delay:0.3s">♪</span>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="site-navbar sticky-top" aria-label="Primary navigation">
-    <div class="container d-flex align-items-center">
-      <a class="navbar-brand me-3" href="#main">Checkout Girl</a>
-
-      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/90 text-white backdrop-blur-xl" data-header>
+    <nav class="site-shell flex h-20 items-center justify-between" aria-label="Primary navigation">
+      <a href="#home" class="font-display text-xl font-bold tracking-[-.04em]" aria-label="Checkout Girl, home">
+        CHECKOUT<span class="text-acid">/</span>GIRL
+      </a>
+      <button class="menu-toggle grid h-11 w-11 place-items-center rounded-full border border-white/20 md:hidden" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+        <span class="sr-only">Open menu</span>
+        <span class="menu-icon" aria-hidden="true"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-center">
-          <li class="nav-item"><a class="nav-link" href="#services-heading">Music</a></li>
-          <li class="nav-item"><a class="nav-link" href="#past-open-mic">Past Open Mics</a></li>
-          
-        </ul>
+      <div id="menu" class="mobile-menu" data-menu>
+        <a href="#about">About</a>
+        <a href="#music">Music</a>
+        <a href="#live">Live</a>
+        <a href="#contact" class="nav-pill">Stay in the loop <span aria-hidden="true">↗</span></a>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
-  <main id="main" role="main">
-    <!-- Hero Section (carousel) -->
-    <header class="gradient-background py-5" role="banner">
-      <div class="container position-relative">
-        <h1 class="hero-title">Checkout Girl</h1>
-        <div id="heroCarousel" class="carousel slide rounded shadow" data-bs-ride="carousel" data-bs-interval="7000">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="https://picsum.photos/seed/hero1/1400/700" class="d-block w-100 carousel-hero-img" alt="Checkout Girl live performance 1">
-              <div class="carousel-caption text-start text-shadow-sm">
-                <h2 class="display-5 fw-bold">Checkout Girl</h2>
-                <p class="lead">Singer & songwriter from Oxfordshire — originals & collaborations</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="https://picsum.photos/seed/hero2/1400/700" class="d-block w-100 carousel-hero-img" alt="Checkout Girl live performance 2">
-              <div class="carousel-caption text-start text-shadow-sm">
-                <h2 class="display-5 fw-bold">New single out now</h2>
-                <p class="lead">Listen to the latest releases and live sessions</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="https://picsum.photos/seed/hero3/1400/700" class="d-block w-100 carousel-hero-img" alt="Checkout Girl live performance 3">
-              <div class="carousel-caption text-start text-shadow-sm">
-                <h2 class="display-5 fw-bold">Open Mic Highlights</h2>
-                <p class="lead">Community nights and local collaborations</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="https://picsum.photos/seed/hero4/1400/700" class="d-block w-100 carousel-hero-img" alt="Checkout Girl live performance 4">
-              <div class="carousel-caption text-start text-shadow-sm">
-                <h2 class="display-5 fw-bold">Catch a show soon</h2>
-                <p class="lead">Tours, pop-ups and intimate sets</p>
-              </div>
-            </div>
+  <main id="main">
+    <section id="home" class="relative min-h-[760px] overflow-hidden bg-ink pt-20 text-white lg:min-h-screen">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="site-shell relative grid min-h-[680px] items-end gap-8 pb-10 pt-12 lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:pb-14">
+        <div class="relative z-10 pt-8 lg:pt-0">
+          <p class="eyebrow reveal">Oxfordshire · Singer / Songwriter</p>
+          <h1 class="hero-title reveal">
+            Big feelings.<br>
+            <span class="outline-text">No barcode.</span>
+          </h1>
+          <p class="mt-7 max-w-lg text-lg leading-relaxed text-white/65 reveal md:text-xl">
+            Checkout Girl makes candid, genre-curious songs for late nights, loud hearts and anyone still figuring it out.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3 reveal">
+            <a href="#music" class="button button-acid">Explore the music <span aria-hidden="true">↘</span></a>
+            <a href="#about" class="button button-ghost">Meet the artist</a>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Previous slide">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Next slide">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          </button>
-          <button id="carouselPause" type="button" class="btn btn-outline-secondary carousel-pause-btn" aria-pressed="false" aria-label="Pause carousel">Pause</button>
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+
+        <div class="hero-portrait reveal">
+          <div class="portrait-sticker portrait-sticker-top">100%<br>ORIGINAL</div>
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/images/checkoutgirl2.jpg">
+            <img src="assets/images/checkoutgirlmain.jpg" alt="Checkout Girl smiling beneath colourful stage lighting" width="540" height="960" fetchpriority="high">
+          </picture>
+          <div class="portrait-caption">
+            <span>01</span>
+            <span>Independent sound<br>Made in Oxfordshire</span>
           </div>
         </div>
       </div>
-    </header>
-
-    <!-- Live region for announcing audio playback status to assistive tech -->
-    <div id="audioStatus" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
-
-    <!-- About Section -->
-    <section class="container py-5 text-center">
-      <h2 class="fw-bold">About Checkout Girl</h2>
-      <p>Checkout Girl is a grassroots singer & songwriter from Oxfordshire who thrives when her mind is focused on music in all of its forms.</p>
-      <p>She has collaborated with UK-based producer ProjectP and released tracks on the Mustache Crew record label.</p>
-    </section>
-    <!-- Past Open Mic Nights -->
-    <section id="past-open-mic" class="container py-5" aria-labelledby="past-openmic-heading">
-      <h2 id="past-openmic-heading" class="text-center fw-bold mb-4">Past Open Mic Nights</h2>
-      <div class="row g-4 past-events row-cols-1 row-cols-md-2 row-cols-lg-2">
-        <article class="col">
-          <div class="event-card p-3 h-100 shadow-sm">
-            <img src="https://picsum.photos/seed/past1/600/400" alt="Open mic March 2025" class="img-fluid rounded mb-3">
-            <h3 class="mb-1">March Open Mic — 2025</h3>
-            <p class="small text-muted mb-2">The Barn, Oxfordshire — packed night of originals and covers.</p>
-            <p class="mb-2">Highlights: acoustic set of new material and a duet with a guest guitarist.</p>
-            <a class="btn btn-outline-secondary" href="#">Listen to highlights</a>
-          </div>
-        </article>
-
-        <article class="col">
-          <div class="event-card p-3 h-100 shadow-sm">
-            <img src="https://picsum.photos/seed/past2/600/400" alt="Open mic Sept 2024" class="img-fluid rounded mb-3">
-            <h3 class="mb-1">September Open Mic — 2024</h3>
-            <p class="small text-muted mb-2">The Green Room — intimate late-night session.</p>
-            <p class="mb-2">Highlights: debut of "Paper Boats" and audience singalong.</p>
-            <a class="btn btn-outline-secondary" href="#">View photos</a>
-          </div>
-        </article>
-
-        <article class="col">
-          <div class="event-card p-3 h-100 shadow-sm">
-            <img src="https://picsum.photos/seed/past3/600/400" alt="Open mic May 2024" class="img-fluid rounded mb-3">
-            <h3 class="mb-1">May Open Mic — 2024</h3>
-            <p class="small text-muted mb-2">Cafe Luna — debut set and supportive crowd.</p>
-            <p class="mb-2">Highlights: early demo recordings and feedback from fans.</p>
-            <a class="btn btn-outline-secondary" href="#">See setlist</a>
-          </div>
-        </article>
+      <div class="marquee border-y border-white/15 bg-acid py-3 text-ink" aria-label="Singer, songwriter, collaborator, performer">
+        <div class="marquee-track font-display text-sm font-bold uppercase tracking-[.18em]">
+          <span>Singer ✦ Songwriter ✦ Collaborator ✦ Performer ✦ New sounds loading ✦</span>
+          <span aria-hidden="true">Singer ✦ Songwriter ✦ Collaborator ✦ Performer ✦ New sounds loading ✦</span>
+        </div>
       </div>
     </section>
 
-    <!-- Open Mic section removed (past events retained) -->
-
-    <!-- Features Section -->
-    <section class="container py-5" aria-labelledby="services-heading">
-      <h2 id="services-heading" class="text-center fw-bold mb-4">Music</h2>
-      <div class="row g-4 py-3 music-grid row-cols-1 row-cols-md-2 row-cols-lg-2">
-        <article class="col">
-          <div class="music-card p-3 shadow-sm h-100">
-            <div class="cover mb-3">
-              <img src="https://picsum.photos/seed/track1/600/400" alt="Single artwork: Echoes" class="img-fluid rounded">
-            </div>
-            <h3 class="mb-1">Echoes</h3>
-            <p class="text-muted small mb-2">Single — 2024 · with ProjectP</p>
-            <p class="mb-2">A dreamy indie-pop single with layered harmonies and intimate storytelling.</p>
-            <audio controls preload="none" class="w-100">
-              <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-            <div class="mt-3 d-flex gap-2">
-              <button class="btn btn-retro" type="button" aria-pressed="false" aria-label="Play Echoes">Listen</button>
-              <a class="btn btn-outline-secondary" href="#">More</a>
+    <section id="about" class="section-space overflow-hidden">
+      <div class="site-shell">
+        <div class="grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
+          <div class="reveal">
+            <p class="section-index">[ 01 — Who is she? ]</p>
+            <div class="mt-10 hidden aspect-[4/5] overflow-hidden rounded-[2rem] bg-lilac lg:block">
+              <img class="h-full w-full object-cover object-center grayscale transition duration-700 hover:grayscale-0" src="assets/images/checkoutgirl2.jpg" alt="Checkout Girl during a performance" width="720" height="960" loading="lazy">
             </div>
           </div>
-        </article>
-
-        <article class="col">
-          <div class="music-card p-3 shadow-sm h-100">
-            <div class="cover mb-3">
-              <img src="https://picsum.photos/seed/track2/600/400" alt="Single artwork: Midnight Lines" class="img-fluid rounded">
+          <div>
+            <h2 class="section-title reveal">Music keeps<br><span class="marker">her focused.</span></h2>
+            <div class="mt-10 grid gap-8 border-t border-ink/20 pt-8 md:grid-cols-2 reveal">
+              <p class="text-xl leading-relaxed md:text-2xl">A grassroots singer-songwriter with an instinct for honest words, bold melodies and connecting with a room.</p>
+              <div class="space-y-5 text-base leading-relaxed text-ink/65">
+                <p>Checkout Girl is an independent artist from Oxfordshire who thrives when her mind is focused on music in all its forms.</p>
+                <p>Her creative story includes work with UK producer ProjectP and releases through the Mustache Crew label—with plenty more still to be written.</p>
+              </div>
             </div>
-            <h3 class="mb-1">Midnight Lines</h3>
-            <p class="text-muted small mb-2">EP — 2023</p>
-            <p class="mb-2">A moody singer-songwriter track exploring late-night reflections and city lights.</p>
-            <audio controls preload="none" class="w-100">
-              <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-            <div class="mt-3 d-flex gap-2">
-              <button class="btn btn-retro" type="button" aria-pressed="false" aria-label="Play Midnight Lines">Listen</button>
-              <a class="btn btn-outline-secondary" href="#">More</a>
+            <div class="mt-10 flex flex-wrap gap-2 reveal" aria-label="Artist traits">
+              <span class="tag">Honest lyrics</span><span class="tag">Open mics</span><span class="tag">Collaboration</span><span class="tag">Independent spirit</span>
             </div>
           </div>
-        </article>
+        </div>
+      </div>
+    </section>
 
-        <article class="col">
-          <div class="music-card p-3 shadow-sm h-100">
-            <div class="cover mb-3">
-              <img src="https://picsum.photos/seed/track3/600/400" alt="Single artwork: Paper Boats" class="img-fluid rounded">
-            </div>
-            <h3 class="mb-1">Paper Boats</h3>
-            <p class="text-muted small mb-2">Single — 2022</p>
-            <p class="mb-2">An acoustic-driven ballad with warm guitar and honest lyrics.</p>
-            <audio controls preload="none" class="w-100">
-              <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-            <div class="mt-3 d-flex gap-2">
-              <button class="btn btn-retro" type="button" aria-pressed="false" aria-label="Play Paper Boats">Listen</button>
-              <a class="btn btn-outline-secondary" href="#">More</a>
-            </div>
+    <section id="music" class="section-space bg-ink text-white">
+      <div class="site-shell">
+        <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div>
+            <p class="section-index text-white/50 reveal">[ 02 — On rotation ]</p>
+            <h2 class="section-title mt-7 reveal">Turn it <span class="text-acid">up.</span></h2>
           </div>
-        </article>
+          <p class="max-w-sm text-white/55 reveal">A home for releases, sessions and collaborations. Fresh links can be dropped in as soon as the next track lands.</p>
+        </div>
+
+        <div class="mt-14 grid gap-5 lg:grid-cols-3">
+          <article class="release-card release-featured reveal lg:col-span-2">
+            <div class="release-art bg-coral">
+              <div class="vinyl" aria-hidden="true"><span></span></div>
+              <p>CHECKOUT<br>GIRL</p>
+              <span class="release-number">CG—001</span>
+            </div>
+            <div class="flex flex-1 flex-col justify-between p-7 md:p-9">
+              <div>
+                <p class="eyebrow text-ink/45">Artist spotlight</p>
+                <h3 class="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">The story so far</h3>
+                <p class="mt-4 max-w-md text-ink/60">Original ideas, producer collaborations and songs built to find their people.</p>
+              </div>
+              <a class="text-link mt-10" href="#contact">Hear what’s next <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+          <article class="release-card flex-col bg-lilac text-ink reveal">
+            <div class="flex min-h-64 flex-1 flex-col justify-between p-7 md:p-9">
+              <span class="text-5xl" aria-hidden="true">✳</span>
+              <div>
+                <p class="eyebrow text-ink/45">Now loading</p>
+                <h3 class="mt-4 font-display text-4xl font-bold tracking-tight">New music</h3>
+                <p class="mt-3 text-ink/60">Follow the journey and be first in line when a new release drops.</p>
+              </div>
+            </div>
+            <a class="m-3 flex items-center justify-between rounded-2xl bg-ink px-6 py-5 font-bold text-white transition hover:bg-coral" href="#contact">Keep me posted <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="live" class="section-space bg-coral">
+      <div class="site-shell">
+        <div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+          <div>
+            <p class="section-index reveal">[ 03 — In the room ]</p>
+            <h2 class="section-title mt-7 reveal">Live &<br>unfiltered.</h2>
+          </div>
+          <div class="reveal">
+            <div class="border-y-2 border-ink py-8 md:py-10">
+              <div class="flex items-start justify-between gap-8">
+                <div>
+                  <p class="font-display text-2xl font-bold md:text-4xl">Next date incoming</p>
+                  <p class="mt-3 max-w-lg text-ink/65">Small rooms, open mics and unexpected moments. New live dates will appear here first.</p>
+                </div>
+                <span class="grid size-14 shrink-0 place-items-center rounded-full border-2 border-ink text-2xl md:size-20" aria-hidden="true">↗</span>
+              </div>
+            </div>
+            <p class="mt-8 max-w-2xl text-xl leading-relaxed md:text-2xl">Want Checkout Girl on your line-up, at your venue or in your next creative project? Let’s make something memorable.</p>
+            <a href="#contact" class="button mt-8 border-ink bg-ink text-white hover:bg-acid hover:text-ink">Start a conversation <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="relative overflow-hidden bg-cream py-24 md:py-36">
+      <div class="contact-orbit" aria-hidden="true">♪</div>
+      <div class="site-shell relative z-10 text-center">
+        <p class="section-index reveal">[ 04 — Keep listening ]</p>
+        <h2 class="contact-title mt-7 reveal">Don’t miss<br><span class="outline-dark">a beat.</span></h2>
+        <p class="mx-auto mt-7 max-w-xl text-lg text-ink/60 reveal">New music, live dates and creative updates are on the way. This space is ready for Checkout Girl’s official social and mailing-list links.</p>
+        <div class="mx-auto mt-9 flex max-w-xl flex-col justify-center gap-3 sm:flex-row reveal">
+          <button type="button" class="button button-dark w-full sm:w-auto" data-notify>Notify me <span aria-hidden="true">↗</span></button>
+          <a href="#home" class="button w-full border-ink/20 bg-white sm:w-auto">Back to the top <span aria-hidden="true">↑</span></a>
+        </div>
+        <p class="mt-4 min-h-6 text-sm font-semibold" role="status" aria-live="polite" data-status></p>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer id="contact" class="gradient-background py-5">
-    <div class="container text-white text-center">
-      <p>© 2024–2025 Kinder Minds</p>
-      <p>Contact: <a href="mailto:kc.kinderminds@yahoo.com" class="text-white"></a></p>
+  <footer class="bg-ink py-8 text-white/55">
+    <div class="site-shell flex flex-col gap-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+      <p>© <span data-year></span> Checkout Girl. All rights reserved.</p>
+      <p class="font-display uppercase tracking-[.14em]">Independent · Oxfordshire</p>
     </div>
   </footer>
-
-  <!-- JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/main.nodark.min.js"></script>
 </body>
 </html>
