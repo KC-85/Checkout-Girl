@@ -3,6 +3,31 @@
 const menuButton = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
 const menu = document.querySelector<HTMLElement>('[data-menu]');
 const statusMessage = document.querySelector<HTMLElement>('[data-status]');
+let statusTimer: number | undefined;
+
+type StatusKind = 'success' | 'error';
+
+// Show a styled form result briefly, replacing any message or timer left by a
+// previous submission.
+const showStatus = (message: string, kind: StatusKind): void => {
+  if (!statusMessage) return;
+  window.clearTimeout(statusTimer);
+  statusMessage.textContent = message;
+  statusMessage.dataset.state = kind;
+  statusTimer = window.setTimeout(() => {
+    statusMessage.textContent = '';
+    delete statusMessage.dataset.state;
+    statusTimer = undefined;
+  }, 3000);
+};
+
+const clearStatus = (): void => {
+  if (!statusMessage) return;
+  window.clearTimeout(statusTimer);
+  statusMessage.textContent = '';
+  delete statusMessage.dataset.state;
+  statusTimer = undefined;
+};
 
 // Return the mobile navigation to its closed and accessible state.
 // The guard makes this safe even if the navigation is removed from the HTML later.
@@ -57,7 +82,7 @@ contactForm?.addEventListener('submit', async (event: SubmitEvent) => {
   const payload = Object.fromEntries(fields.entries());
   submitButton.disabled = true;
   submitButton.textContent = 'Sending…';
-  if (statusMessage) statusMessage.textContent = '';
+  clearStatus();
 
   try {
     const response = await fetch('/api/contact', {
@@ -68,11 +93,12 @@ contactForm?.addEventListener('submit', async (event: SubmitEvent) => {
     const result = await response.json() as { message?: string };
     if (!response.ok) throw new Error(result.message || 'Message could not be sent.');
     contactForm.reset();
-    if (statusMessage) statusMessage.textContent = 'Thanks — your message is on its way.';
+    showStatus('Thanks — your message is on its way.', 'success');
   } catch (error) {
-    if (statusMessage) {
-      statusMessage.textContent = error instanceof Error ? error.message : 'Message could not be sent. Please try again.';
-    }
+    showStatus(
+      error instanceof Error ? error.message : 'Message could not be sent. Please try again.',
+      'error'
+    );
   } finally {
     submitButton.disabled = false;
     submitButton.textContent = 'Send message ↗';

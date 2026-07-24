@@ -4,6 +4,29 @@
 const menuButton = document.querySelector('[data-menu-toggle]');
 const menu = document.querySelector('[data-menu]');
 const statusMessage = document.querySelector('[data-status]');
+let statusTimer;
+// Show a styled form result briefly, replacing any message or timer left by a
+// previous submission.
+const showStatus = (message, kind) => {
+    if (!statusMessage)
+        return;
+    window.clearTimeout(statusTimer);
+    statusMessage.textContent = message;
+    statusMessage.dataset.state = kind;
+    statusTimer = window.setTimeout(() => {
+        statusMessage.textContent = '';
+        delete statusMessage.dataset.state;
+        statusTimer = undefined;
+    }, 3000);
+};
+const clearStatus = () => {
+    if (!statusMessage)
+        return;
+    window.clearTimeout(statusTimer);
+    statusMessage.textContent = '';
+    delete statusMessage.dataset.state;
+    statusTimer = undefined;
+};
 // Return the mobile navigation to its closed and accessible state.
 // The guard makes this safe even if the navigation is removed from the HTML later.
 const closeMenu = () => {
@@ -56,8 +79,7 @@ contactForm?.addEventListener('submit', async (event) => {
     const payload = Object.fromEntries(fields.entries());
     submitButton.disabled = true;
     submitButton.textContent = 'Sending…';
-    if (statusMessage)
-        statusMessage.textContent = '';
+    clearStatus();
     try {
         const response = await fetch('/api/contact', {
             method: 'POST',
@@ -68,13 +90,10 @@ contactForm?.addEventListener('submit', async (event) => {
         if (!response.ok)
             throw new Error(result.message || 'Message could not be sent.');
         contactForm.reset();
-        if (statusMessage)
-            statusMessage.textContent = 'Thanks — your message is on its way.';
+        showStatus('Thanks — your message is on its way.', 'success');
     }
     catch (error) {
-        if (statusMessage) {
-            statusMessage.textContent = error instanceof Error ? error.message : 'Message could not be sent. Please try again.';
-        }
+        showStatus(error instanceof Error ? error.message : 'Message could not be sent. Please try again.', 'error');
     }
     finally {
         submitButton.disabled = false;
