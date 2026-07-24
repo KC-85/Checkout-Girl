@@ -210,6 +210,30 @@ func (l *limiter) allow(key string, now time.Time) bool {
 	return true
 }
 
+func clientIP(r *http.Request) string {
+	// Render places the original visitor address first in X-Forwarded-For.
+	// Trust only that entry, and only when it contains a valid IP address.
+	if forwarded := r.Header.Get("X-Forwarded-For"); forwarded != "" {
+		first, _, _ := strings.Cut(forwarded, ",")
+		if ip := net.ParseIP(strings.TrimSpace(first)); ip != nil {
+			return ip.String()
+		}
+	}
+
+	// Local development connects directly, so RemoteAddr contains the visitor
+	// address and usually includes a port.
+	if host, _, err := net.SplitHostPort(r.RemoteAddr); err == nil {
+		if ip := net.ParseIP(host); ip != nil {
+			return ip.String()
+		}
+		return host
+	}
+	if ip := net.ParseIP(strings.Trim(r.RemoteAddr, "[]")); ip != nil {
+		return ip.String()
+	}
+	return r.RemoteAddr
+}
+
 func contactHandler(sender mailSender, limits *limiter) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
@@ -217,11 +241,7 @@ func contactHandler(sender mailSender, limits *limiter) http.HandlerFunc {
 			writeJSON(w, http.StatusMethodNotAllowed, "method not allowed")
 			return
 		}
-		ip, _, err := net.SplitHostPort(r.RemoteAddr)
-		if err != nil {
-			ip = r.RemoteAddr
-		}
-		if !limits.allow(ip, time.Now()) {
+		if !limits.allow(clientIP(r), time.Now()) {
 			w.Header().Set("Retry-After", strconv.Itoa(int(limits.window.Seconds())))
 			writeJSON(w, http.StatusTooManyRequests, "too many messages; please try again later")
 			return

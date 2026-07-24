@@ -79,6 +79,58 @@ func TestLimiter(t *testing.T) {
 	}
 }
 
+func TestClientIP(t *testing.T) {
+	tests := []struct {
+		name       string
+		remoteAddr string
+		forwarded  string
+		want       string
+	}{
+		{
+			name:       "Render forwarded IPv4",
+			remoteAddr: "10.0.0.5:4321",
+			forwarded:  "203.0.113.10, 10.0.0.5",
+			want:       "203.0.113.10",
+		},
+		{
+			name:       "Render forwarded IPv6",
+			remoteAddr: "10.0.0.5:4321",
+			forwarded:  "2001:db8::10, 10.0.0.5",
+			want:       "2001:db8::10",
+		},
+		{
+			name:       "malformed forwarded address falls back",
+			remoteAddr: "192.0.2.20:4321",
+			forwarded:  "not-an-ip, 203.0.113.10",
+			want:       "192.0.2.20",
+		},
+		{
+			name:       "local direct request",
+			remoteAddr: "192.0.2.30:4321",
+			want:       "192.0.2.30",
+		},
+		{
+			name:       "IPv6 remote address",
+			remoteAddr: "[2001:db8::20]:4321",
+			want:       "2001:db8::20",
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			req := httptest.NewRequest(http.MethodPost, "/api/contact", nil)
+			req.RemoteAddr = test.remoteAddr
+			if test.forwarded != "" {
+				req.Header.Set("X-Forwarded-For", test.forwarded)
+			}
+
+			if got := clientIP(req); got != test.want {
+				t.Fatalf("clientIP() = %q; want %q", got, test.want)
+			}
+		})
+	}
+}
+
 func TestStaticHandlerDoesNotExposeEnvironmentFile(t *testing.T) {
 	directory := t.TempDir()
 	if err := os.WriteFile(filepath.Join(directory, ".env"), []byte("SMTP_PASSWORD=secret"), 0600); err != nil {
