@@ -71,10 +71,12 @@ else {
 // Submit the contact form to the Go API without navigating away from the page.
 const contactForm = document.querySelector('[data-contact-form]');
 const submitButton = document.querySelector('[data-submit]');
+let isSubmitting = false;
 contactForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
-    if (!contactForm.reportValidity() || !submitButton)
+    if (isSubmitting || !contactForm.reportValidity() || !submitButton)
         return;
+    isSubmitting = true;
     const fields = new FormData(contactForm);
     const payload = Object.fromEntries(fields.entries());
     submitButton.disabled = true;
@@ -97,6 +99,7 @@ contactForm?.addEventListener('submit', async (event) => {
         showStatus(error instanceof Error ? error.message : 'Message could not be sent. Please try again.', 'error');
     }
     finally {
+        isSubmitting = false;
         submitButton.disabled = false;
         submitButton.setAttribute('aria-busy', 'false');
         submitButton.textContent = 'Send message ↗';

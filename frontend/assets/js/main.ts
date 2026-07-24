@@ -73,11 +73,13 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 // Submit the contact form to the Go API without navigating away from the page.
 const contactForm = document.querySelector<HTMLFormElement>('[data-contact-form]');
 const submitButton = document.querySelector<HTMLButtonElement>('[data-submit]');
+let isSubmitting = false;
 
 contactForm?.addEventListener('submit', async (event: SubmitEvent) => {
   event.preventDefault();
-  if (!contactForm.reportValidity() || !submitButton) return;
+  if (isSubmitting || !contactForm.reportValidity() || !submitButton) return;
 
+  isSubmitting = true;
   const fields = new FormData(contactForm);
   const payload = Object.fromEntries(fields.entries());
   submitButton.disabled = true;
@@ -101,6 +103,7 @@ contactForm?.addEventListener('submit', async (event: SubmitEvent) => {
       'error'
     );
   } finally {
+    isSubmitting = false;
     submitButton.disabled = false;
     submitButton.setAttribute('aria-busy', 'false');
     submitButton.textContent = 'Send message ↗';
