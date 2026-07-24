@@ -78,6 +78,7 @@ contactForm?.addEventListener('submit', async (event) => {
     const fields = new FormData(contactForm);
     const payload = Object.fromEntries(fields.entries());
     submitButton.disabled = true;
+    submitButton.setAttribute('aria-busy', 'true');
     submitButton.textContent = 'Sending…';
     clearStatus();
     try {
@@ -97,6 +98,7 @@ contactForm?.addEventListener('submit', async (event) => {
     }
     finally {
         submitButton.disabled = false;
+        submitButton.setAttribute('aria-busy', 'false');
         submitButton.textContent = 'Send message ↗';
     }
 });
