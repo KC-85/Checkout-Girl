@@ -2,3 +2,7 @@
 .env
 .env.*
 !.env.example
+
+# Node and Vite outputs
+node_modules/
+frontend/dist/

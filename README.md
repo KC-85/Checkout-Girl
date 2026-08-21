@@ -4,21 +4,23 @@ A responsive, frontend-only artist website built with semantic HTML5, Tailwind C
 
 ## Local development
 
-Serve the `frontend/` directory with any static file server. For example:
+Install the development dependency and start Vite:
 
 ```sh
-python3 -m http.server 8080 --directory frontend
+npm install
+npm run dev
 ```
 
-Then visit `http://localhost:8080`.
+Open the local URL printed by Vite, normally `http://localhost:5173`.
 
-To rebuild the browser JavaScript after editing `frontend/assets/js/main.ts`:
+Create and preview a production build with:
 
 ```sh
-tsc -p frontend/tsconfig.json
+npm run build
+npm run preview
 ```
 
-Tailwind is loaded through its browser CDN, so there is no CSS build step.
+Vite compiles the TypeScript entry point and bundles the production site into `frontend/dist/`. Tailwind is loaded through its browser CDN, so there is no separate CSS build step.
 
 ## Project structure
 
