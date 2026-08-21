@@ -1,33 +1,7 @@
-// Find the interactive navigation and status-message elements once, then reuse them.
+// Find the interactive navigation elements once, then reuse them.
 // The generic type parameters tell TypeScript which HTML element APIs are available.
 const menuButton = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
 const menu = document.querySelector<HTMLElement>('[data-menu]');
-const statusMessage = document.querySelector<HTMLElement>('[data-status]');
-let statusTimer: number | undefined;
-
-type StatusKind = 'success' | 'error';
-
-// Show a styled form result briefly, replacing any message or timer left by a
-// previous submission.
-const showStatus = (message: string, kind: StatusKind): void => {
-  if (!statusMessage) return;
-  window.clearTimeout(statusTimer);
-  statusMessage.textContent = message;
-  statusMessage.dataset.state = kind;
-  statusTimer = window.setTimeout(() => {
-    statusMessage.textContent = '';
-    delete statusMessage.dataset.state;
-    statusTimer = undefined;
-  }, 3000);
-};
-
-const clearStatus = (): void => {
-  if (!statusMessage) return;
-  window.clearTimeout(statusTimer);
-  statusMessage.textContent = '';
-  delete statusMessage.dataset.state;
-  statusTimer = undefined;
-};
 
 // Return the mobile navigation to its closed and accessible state.
 // The guard makes this safe even if the navigation is removed from the HTML later.
@@ -69,46 +43,6 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
   }, { threshold: 0.12 });
   reveals.forEach((element) => observer.observe(element));
 }
-
-// Submit the contact form to the Go API without navigating away from the page.
-const contactForm = document.querySelector<HTMLFormElement>('[data-contact-form]');
-const submitButton = document.querySelector<HTMLButtonElement>('[data-submit]');
-let isSubmitting = false;
-
-contactForm?.addEventListener('submit', async (event: SubmitEvent) => {
-  event.preventDefault();
-  if (isSubmitting || !contactForm.reportValidity() || !submitButton) return;
-
-  isSubmitting = true;
-  const fields = new FormData(contactForm);
-  const payload = Object.fromEntries(fields.entries());
-  submitButton.disabled = true;
-  submitButton.setAttribute('aria-busy', 'true');
-  submitButton.textContent = 'Sending…';
-  clearStatus();
-
-  try {
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const result = await response.json() as { message?: string };
-    if (!response.ok) throw new Error(result.message || 'Message could not be sent.');
-    contactForm.reset();
-    showStatus('Thanks — your message is on its way.', 'success');
-  } catch (error) {
-    showStatus(
-      error instanceof Error ? error.message : 'Message could not be sent. Please try again.',
-      'error'
-    );
-  } finally {
-    isSubmitting = false;
-    submitButton.disabled = false;
-    submitButton.setAttribute('aria-busy', 'false');
-    submitButton.textContent = 'Send message ↗';
-  }
-});
 
 // Keep the footer copyright year current without needing a yearly HTML edit.
 const year = document.querySelector<HTMLElement>('[data-year]');
