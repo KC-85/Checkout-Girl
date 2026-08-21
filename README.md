@@ -22,6 +22,10 @@ npm run preview
 
 Vite compiles the TypeScript entry point and bundles the production site into `frontend/dist/`. Tailwind is loaded through its browser CDN, so there is no separate CSS build step.
 
+## Deployment
+
+The repository includes `vercel.json`, so Vercel will run the production build and deploy `frontend/dist/`. Import the repository into Vercel with the project root left at the repository root; no additional build settings are required.
+
 ## Project structure
 
 ```text
