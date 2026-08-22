@@ -34,4 +34,4 @@ frontend/  Static HTML, CSS, TypeScript and public assets
 
 ## Content to connect
 
-The music, live-date and contact areas intentionally avoid placeholder external URLs. Add Checkout Girl's official streaming, social and booking links when they are ready.
+The current releases link to Spotify. Add future releases, live dates, the official Instagram profile and any additional booking links when they are ready.
