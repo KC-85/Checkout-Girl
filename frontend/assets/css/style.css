@@ -362,6 +362,24 @@ body {
   padding-top: 1.2rem;
   font-weight: 700;
 }
+.collaboration-link {
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: #11110f;
+}
+.collaboration-link span {
+  color: rgb(17 17 15 / 0.45);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.collaboration-link[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
 .contact-title {
   font-family: "Space Grotesk", sans-serif;
   font-size: clamp(4.5rem, 11vw, 10rem);
