@@ -7,6 +7,44 @@
 html {
   scroll-padding-top: 5rem;
 }
+/* Keep native scrollbars in forced-colour accessibility modes. */
+@media (forced-colors: none) {
+  html {
+    scrollbar-color: #d8ff36 #11110f;
+  }
+
+  /* Use the detailed treatment where scrollbar pseudo-elements are supported. */
+  @supports selector(::-webkit-scrollbar) {
+    html {
+      scrollbar-color: auto;
+    }
+
+    html::-webkit-scrollbar {
+      width: 14px;
+      height: 14px;
+    }
+
+    html::-webkit-scrollbar-track,
+    html::-webkit-scrollbar-corner {
+      background: #11110f;
+    }
+
+    html::-webkit-scrollbar-thumb {
+      border: 3px solid #11110f;
+      border-radius: 999px;
+      background: #d8ff36;
+      min-height: 48px;
+    }
+
+    html::-webkit-scrollbar-thumb:hover {
+      background: #f2efe8;
+    }
+
+    html::-webkit-scrollbar-thumb:active {
+      background: #b9a7ff;
+    }
+  }
+}
 body {
   overflow-x: hidden;
 }
